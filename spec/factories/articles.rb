@@ -1,7 +1,12 @@
 FactoryBot.define do
   factory :article do
-    title { "MyString" }
-    post { "MyText" }
-    user { nil }
+    title { generate(:string) }
+    post  { generate(:string) }
+
+    association :user
+
+    trait :invalid do
+      title { '' }
+    end
   end
 end
