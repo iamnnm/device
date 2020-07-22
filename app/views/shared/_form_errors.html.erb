@@ -1,0 +1,15 @@
+<% errors = model.errors %>
+
+<% if errors.any? %>
+  <div class="alert alert-danger pt-4">
+    <h2 class="text-center">
+      <%= pluralize(errors.count, "error") %> prohibited
+      this article from being saved:
+    </h2>
+    <ul style="padding-left: 100px">
+      <% errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
