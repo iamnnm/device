@@ -7,10 +7,12 @@ class UsersController < ApplicationController
     @user = User.find_by(id: params[:id])
   end
 
-  def edit; end
+  def edit
+    redirect_to root_path, error: 'Don\'t fuck with me!' if @user.nil?
+  end
 
   def update
-    if @user.update(user_params)
+    if !@user.nil? && @user.update(user_params)
       redirect_to user_path, success: 'User was successfully edited!'
     else
       render :edit
@@ -20,7 +22,11 @@ class UsersController < ApplicationController
   private
 
   def set_current_user
-    @user = User.find_by(id: current_user.id)
+    if !current_user.nil?
+      @user = User.find_by(id: current_user.id )
+    else
+      @user = nil
+    end
   end
 
   def user_params
