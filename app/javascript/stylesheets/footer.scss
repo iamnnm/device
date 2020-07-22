@@ -1,12 +1,13 @@
 footer {
   position: relative;
+  margin-top: 300px;
 }
 
 .footer-body {
-  position: fixed;
+  position: static;
   bottom: 0;
   border-top: 1px solid rgba(223, 223, 223, 0.5);
-  background-color: rgba(247, 247, 247, 0.5);
+  background-color: rgba(247, 247, 247, 1);
   margin-top: 50px;
   height: 300px;
   padding: 50px;

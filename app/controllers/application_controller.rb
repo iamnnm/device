@@ -29,7 +29,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  # def current_user_can_edit?(event)
-  #   user_signed_in? && current_user == event.user
-  # end
+  def current_user_can_edit?(event)
+    user_signed_in? && current_user == event.user
+  end
 end

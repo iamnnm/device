@@ -1,0 +1,20 @@
+<%= render 'articles/articles', articles: [@article] %>
+
+<% if current_user_can_edit? @article %>
+  <div class="d-flex justify-content-around mt-4">
+    <%= link_to 'Back', articles_path, class: 'btn btn-success shadow px-5' %>
+    <%= link_to 'Edit', edit_article_path, class: 'btn btn-success shadow px-5' %>
+    <%= link_to 'Delete', article_path, method: :delete,
+                data: { confirm: 'Are you sure?' }, class: 'btn btn-success shadow px-5' %>
+  </div>
+<% end %>
+
+<div class="card mt-4 shadow mb-4">
+  <div class="card-header">
+    <h1 class="mt-1">Comments:</h1>
+  </div>
+  <div class="card-body">
+  </div>
+  <div class="card-footer">
+  </div>
+</div>
