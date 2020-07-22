@@ -14,5 +14,3 @@ Rails.application.routes.draw do
   resources :users, only: %i[show edit update]
   resources :articles
 end
-# %i[show edit update]
-# only: [:show, :edit, :update]

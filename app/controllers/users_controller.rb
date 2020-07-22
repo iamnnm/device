@@ -1,9 +1,11 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
-  before_action :set_user
+  before_action :set_current_user, only: %i[edit update]
 
-  def show; end
+  def show
+    @user = User.find_by(id: params[:id])
+  end
 
   def edit; end
 
@@ -17,8 +19,8 @@ class UsersController < ApplicationController
 
   private
 
-  def set_user
-    @user = User.find_by(params[:id])
+  def set_current_user
+    @user = User.find_by(id: current_user.id)
   end
 
   def user_params
