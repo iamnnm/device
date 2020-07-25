@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :user do
-    # name  { generate(:string) }
+    name  { '' }
     email { generate(:email) }
 
     after(:build) do |u|
