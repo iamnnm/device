@@ -2,37 +2,33 @@
 
 require 'rails_helper'
 
-RSpec.feature 'User', type: :feature do
+RSpec.feature 'User', type: :feature, js: true do
   scenario 'creates your profile' do
     user = create(:user)
-
-    visit root_path
-    click_link 'Sign in'
-    fill_in 'Email', with: user.email
-    fill_in 'Password', with: user.password
-    sleep 1
-    click_button 'Log in'
-    sleep 1
-    # expect(page).to have_content('Signed in successfully.')
-    visit '/users/1'
-    sleep 2
-    expect(page).to have_content('Comrade')
-
-    # save_and_open_page
+    sign_in_as user
+    aggregate_failures do
+      expect(page).to have_content('Signed in successfully.')
+      expect(page).to have_content('Comrade')
+    end
   end
 
-  # scenario 'view own profile' do
-  #   visit root_path
-  #   click_link 'Sign up'
-  #   fill_in 'Email', with: '123@ya.ru'
-  #   fill_in 'Password', with: '123123'
-  #   fill_in 'Password confirmation', with: '123123'
-  #   click_button 'Sign up'
-  #   sleep 1
-  #   click_link 'Gizeh'
-  #   sleep 1
-  #   visit '/users/1'
-  #   sleep 2
-  #   expect(page).to have_content('Comrade')
-  # end
+  scenario 'changes his name on the profile' do
+    user = create(:user)
+    sign_in_as user
+
+    visit '/users/1'
+    aggregate_failures do
+      expect(page).to have_content('Edit profile')
+      expect(page).to have_content('Comrade')
+    end
+
+    click_link 'Edit profile'
+    fill_in 'Name', with: 'John'
+    click_button 'Save'
+
+    aggregate_failures do
+      expect(page).to have_content('Edit profile')
+      expect(page).to have_content('John')
+    end
+  end
 end
