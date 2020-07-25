@@ -52,12 +52,12 @@ RSpec.describe ArticlesController, type: :controller do
     context 'as an authenticated user' do
       before do
         @user = create(:user)
+        sign_in @user
       end
 
       context 'with valid attributes' do
         it 'adds an article' do
           article_params = attributes_for(:article, user: @user)
-          sign_in @user
           expect {
             post :create, params: { article: article_params }
           }.to change(@user.articles, :count).by(1)
@@ -68,7 +68,6 @@ RSpec.describe ArticlesController, type: :controller do
       context 'with invalid attributes' do
         it 'does not add an article' do
           article_params = attributes_for(:article, :invalid, user: @user)
-          sign_in @user
           expect {
             post :create, params: { article: article_params }
           }.to_not change(@user.articles, :count)
@@ -77,15 +76,16 @@ RSpec.describe ArticlesController, type: :controller do
     end
 
     context 'as a guest' do
-      it 'returns a 302 response' do
+      before do
         article_params = attributes_for(:article)
         post :create, params: { article: article_params }
+      end
+
+      it 'returns a 302 response' do
         expect(response).to have_http_status '302'
       end
 
       it 'redirects to sing_in page' do
-        article_params = attributes_for(:article)
-        post :create, params: { article: article_params }
         expect(response).to redirect_to '/users/sign_in'
       end
     end
@@ -118,6 +118,7 @@ RSpec.describe ArticlesController, type: :controller do
       @user = create(:user)
       @article = create(:article)
     end
+
     context 'as an authenticated user' do
       it 'responses render template EDIT' do
         sign_in @user
@@ -167,17 +168,15 @@ RSpec.describe ArticlesController, type: :controller do
     context 'as a guest' do
       before do
         @article = create(:article)
+        article_params = attributes_for(:article)
+        patch :update, params: { id: @article.id, article: article_params }
       end
 
       it 'returns a 302 response' do
-        article_params = attributes_for(:article)
-        patch :update, params: { id: @article.id, article: article_params }
         expect(response).to have_http_status '302'
       end
 
       it 'redirects to the sign-in page' do
-        article_params = attributes_for(:article)
-        patch :update, params: { id: @article.id, article: article_params }
         expect(response).to redirect_to '/users/sign_in'
       end
     end
@@ -203,17 +202,15 @@ RSpec.describe ArticlesController, type: :controller do
         @user = create(:user)
         @other_user = create(:user)
         @article = create(:article, user: @other_user)
+        sign_in @user
+        delete :destroy, params: { id: @article.id }
       end
 
       it 'does not delete the project' do
-        sign_in @user
-        delete :destroy, params: { id: @article.id }
         expect(response).to have_http_status '302'
       end
 
       it 'redirects to the dashboard' do
-        sign_in @user
-        delete :destroy, params: { id: @article.id }
         expect(response).to redirect_to root_path
       end
     end
