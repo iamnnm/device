@@ -11,7 +11,8 @@ class CommentsController < ApplicationController
     @comment.user = current_user
 
     if @comment.save
-      redirect_to @article
+      # redirect_to @article
+      render partial: 'comments/comment', locals: { comment: @comment }
     else
       render 'articles/show'
     end

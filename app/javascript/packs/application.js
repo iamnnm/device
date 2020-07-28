@@ -12,10 +12,12 @@ import "bootstrap"
 import "../stylesheets/application"
 
 import './notices/index'
+import './comments/index'
 
 document.addEventListener("turbolinks:load", () => {
     $('[data-toggle="tooltip"]').tooltip();
     $('[data-toggle="popover"]').popover();
+    ajaxDeleteComment();
 });
 
 // Uncomment to copy all static images under ../images to the output folder and reference

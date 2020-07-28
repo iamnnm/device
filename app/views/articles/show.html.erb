@@ -17,6 +17,7 @@
     <% @article.comments.each do |comment| %>
       <%= render 'comments/comment', comment: comment %>
     <% end %>
+    <div class="insert-comment"></div>
   </div>
   <div class="card-footer">
     <%= render 'comments/form' %>

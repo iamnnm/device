@@ -32,6 +32,6 @@
   <div class="comment-btn" >
     <a id="reply-btn">replay</a>
     <%= link_to 'delete', [@article, comment], method: :delete, remote: true,
-                data: { confirm: 'Are you sure?' } if current_user_can_edit? comment %>
+                data: { confirm: 'Are you sure?' }, class: 'delete_comment' if current_user_can_edit? comment %>
   </div>
 </div>
