@@ -12,5 +12,7 @@ Rails.application.routes.draw do
   root to: 'articles#index'
 
   resources :users, only: %i[show edit update]
-  resources :articles
+  resources :articles do
+    resources :comments
+  end
 end

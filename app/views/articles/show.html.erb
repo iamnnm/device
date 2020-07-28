@@ -13,8 +13,12 @@
   <div class="card-header">
     <h1 class="mt-1">Comments:</h1>
   </div>
-  <div class="card-body">
+  <div class="card-body pb-0">
+    <% @article.comments.each do |comment| %>
+      <%= render 'comments/comment', comment: comment %>
+    <% end %>
   </div>
   <div class="card-footer">
+    <%= render 'comments/form' %>
   </div>
 </div>

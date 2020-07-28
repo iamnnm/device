@@ -9,6 +9,7 @@ class User < ApplicationRecord
   before_validation :set_name, on: [:create]
 
   has_many :articles
+  has_many :comments
 
   validates :name, presence: true, length: { maximum: 35 } #, uniqueness: true
 
