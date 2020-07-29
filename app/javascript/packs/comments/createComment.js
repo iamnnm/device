@@ -1,3 +1,6 @@
+import ajaxDeleteComment from "./deleteComment";
+import addNotice from "../notices/add-notice";
+
 export default function ajaxCreateComment () {
     const form = document.querySelector('#submit-comment-form');
 
@@ -6,12 +9,9 @@ export default function ajaxCreateComment () {
         const comment = data.querySelector('.comment');
         const insert_point = document.querySelector('.insert-comment');
 
-        // console.log(data);
-        // console.log(status);
-        // console.log('Hello!');
-        // alert("The article was deleted.");
-
         insert_point.insertAdjacentElement('beforebegin', comment);
+        addNotice('alert-massage-success', 'Comment has been created!');
+        ajaxDeleteComment();
     });
 
     form.addEventListener('ajax:error', (e) => {

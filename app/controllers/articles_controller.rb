@@ -18,7 +18,7 @@ class ArticlesController < ApplicationController
     @article.user = current_user
 
     if @article.save
-      redirect_to @article, success: 'Post has created!'
+      redirect_to @article, success: 'Post has been created!'
     else
       render :new
     end
@@ -28,7 +28,7 @@ class ArticlesController < ApplicationController
 
   def update
     if @article.update(article_params)
-      redirect_to @article, success: 'Post has updated!'
+      redirect_to @article, success: 'Post has been updated!'
     else
       render :edit
     end
@@ -44,7 +44,7 @@ class ArticlesController < ApplicationController
     else
       @article.destroy
 
-      redirect_to articles_path, success: 'Post has deleted!'
+      redirect_to articles_path, success: 'Post has been deleted!'
     end
   end
 
