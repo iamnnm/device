@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.feature 'Articles', type: :feature do
+RSpec.feature 'Article', type: :feature do
   context 'as an authenticated user' do
     let(:user) { create(:user) }
 
@@ -18,7 +18,7 @@ RSpec.feature 'Articles', type: :feature do
       click_button 'Save'
 
       aggregate_failures do
-        expect(page).to have_content('Post has created!')
+        expect(page).to have_content('Post has been created!')
         expect(page).to have_content('New title')
         expect(page).to have_content('New post')
       end
