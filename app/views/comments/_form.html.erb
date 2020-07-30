@@ -1,5 +1,6 @@
 <%= form_with model: [@article, Comment.new], class: 'mt-2', id: 'submit-comment-form' do |f| %>
   <div class="form-group">
+    <label class="dnone"><%= f.label :body %></label>
     <%= f.text_area :body, class: 'form-control', placeholder: 'type text of a commentary' %>
   </div>
   <div class="form">
