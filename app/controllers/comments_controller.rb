@@ -11,17 +11,22 @@ class CommentsController < ApplicationController
     @comment.user = current_user
 
     if @comment.save
-      render partial: 'comments/comment',
-             locals: { comment: @comment }
+      # render partial: 'comments/comment', locals: { comment: @comment }
+      render @comment
     else
-      render 'articles/show'
+      render json: @comment.errors, status: 400
     end
   end
 
   def update; end
 
   def destroy
-    @comment.destroy
+    if @comment.nil?
+      render json: { error: 'You are trying to delete not your comment.' },
+             status: 403
+    else
+      @comment.destroy
+    end
   end
 
   private
