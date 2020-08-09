@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_28_152406) do
+ActiveRecord::Schema.define(version: 2020_08_08_174857) do
 
   create_table "articles", force: :cascade do |t|
     t.string "title"
@@ -58,7 +58,31 @@ ActiveRecord::Schema.define(version: 2020_07_28_152406) do
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
+  create_table "voteables", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "voteable_type", null: false
+    t.integer "voteable_id", null: false
+    t.string "vote_type"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_voteables_on_user_id"
+    t.index ["voteable_type", "voteable_id"], name: "index_voteables_on_voteable_type_and_voteable_id"
+  end
+
+  create_table "votes", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "voteable_type", null: false
+    t.integer "voteable_id", null: false
+    t.string "vote_type"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_votes_on_user_id"
+    t.index ["voteable_type", "voteable_id"], name: "index_votes_on_voteable_type_and_voteable_id"
+  end
+
   add_foreign_key "articles", "users"
   add_foreign_key "comments", "articles"
   add_foreign_key "comments", "users"
+  add_foreign_key "voteables", "users"
+  add_foreign_key "votes", "users"
 end

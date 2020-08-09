@@ -2,8 +2,21 @@
   <div class="comment-head">
     <div class="comment-rate">
       <div class="rate">+35</div>
-      <div class="vote-up">▲</div>
-      <div class="vote-down">▼</div>
+
+      <div class="rating">
+        <% if current_user.nil? %>
+          <%= render 'votes/default_rate_selectors', comment: comment %>
+        <% elsif current_user.id == comment.user.id %>
+          <%= '' %>
+        <% elsif did_user_like?(comment) %>
+          <%= render 'votes/like', comment: comment %>
+        <% elsif did_user_dislike?(comment) %>
+          <%= render 'votes/dislike', comment: comment %>
+        <% else %>
+          <%= render 'votes/default_rate_selectors', comment: comment %>
+        <% end %>
+      </div>
+
     </div>
     <div class="comment-owner">
       <div class="user-avatar"><i class="far fa-dizzy"></i></div>

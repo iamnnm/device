@@ -15,6 +15,7 @@ import "../stylesheets/application"
 
 import './notices/index'
 import './comments/index'
+import './voteable/index'
 
 document.addEventListener("turbolinks:load", () => {
     $('[data-toggle="tooltip"]').tooltip();

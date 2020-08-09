@@ -1,0 +1,12 @@
+<div class="rating-selectors">
+  <%= button_to('▲', comment_votes_path(comment),
+                form_class: 'vote-up-default',
+                class: 'no-button',
+                params: { vote_type: :like },
+                remote: true) %>
+  <%= button_to('▼', comment_votes_path(comment),
+                form_class: 'vote-down-default',
+                class: 'no-button',
+                params: { vote_type: :dislike },
+                remote: true) %>
+</div>

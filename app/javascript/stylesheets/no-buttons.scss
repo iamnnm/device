@@ -1,0 +1,20 @@
+.comment-rate input[type="submit"] {
+  border: none;
+  outline: none;
+  background-color: white;
+  padding: 0;
+  margin: 0 0 0 5px;
+  font-size: 20px;
+}
+
+.comment-rate form {
+  display: inline-block;
+}
+
+.liked {
+  color: #28a745;
+}
+
+.disliked {
+  color: #B00100;
+}
