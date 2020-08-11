@@ -10,9 +10,8 @@ class VotesController < ApplicationController
     if already_voted?
       render json: "You can't #{params[:vote_type]} more than once", status: 403
     else
-      @vote = @voteable.votes.build
-      @vote.vote_type = params[:vote_type]
-      @vote.user = current_user
+      @vote = @voteable.votes.build(user: current_user,
+                                    vote_type: params[:vote_type])
       @vote.save
 
       render partial: "votes/#{params[:vote_type]}",
