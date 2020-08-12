@@ -1,0 +1,22 @@
+<div class="article-rating-wrapper">
+  <div class="article-vote-up">
+    <%= button_to '▲', article_votes_path(article),
+                  form_class: 'article-vote-up-selector',
+                  class: 'no-button liked',
+                  remote: true,
+                  params: { vote_type: :like } %>
+  </div>
+  <div class="text-center">
+    <div class="article-vote-result">
+      <%= 9842 %>
+    </div>
+  </div>
+  <div class="article-vote-down">
+    <%= button_to '▼', article_vote_path(article, Vote),
+                  form_class: 'article-vote-down-selector',
+                  class: 'no-button',
+                  remote: true,
+                  params: { vote_type: :like },
+                  method: :delete %>
+  </div>
+</div>

@@ -1,5 +1,5 @@
 export default function insertNewSelectors(event) {
-    const [data, status] = event.detail;
+    const [data] = event.detail;
     const newSelectors = data.querySelector('.rating-selectors');
     const insert_point = event.target.parentElement.parentElement;
 

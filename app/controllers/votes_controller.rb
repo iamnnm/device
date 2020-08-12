@@ -14,14 +14,14 @@ class VotesController < ApplicationController
                                     vote_type: params[:vote_type])
       @vote.save
 
-      render partial: "votes/#{params[:vote_type]}",
-             locals: { comment: @voteable }
+      render partial: "votes/#{@voteable.class.name.downcase}_#{params[:vote_type]}",
+             locals: { comment: @voteable, article: @voteable }
     end
   end
 
   def destroy
     @vote = Vote.where(user_id: current_user.id,
-                       voteable_id: params[:comment_id || :article_id],
+                       voteable_id: params[:comment_id] || params[:article_id],
                        vote_type: params[:vote_type]).take
 
     if @vote.blank?
@@ -29,8 +29,8 @@ class VotesController < ApplicationController
     else
       @vote.destroy
 
-      render partial: 'votes/default_rate_selectors',
-             locals: { comment: @voteable }
+      render partial: "votes/#{@voteable.class.name.downcase}_default_rate_selectors",
+             locals: { comment: @voteable, article: @voteable }
     end
   end
 
@@ -38,7 +38,7 @@ class VotesController < ApplicationController
 
   def already_voted?
     Vote.where(user_id: current_user.id,
-               voteable_id: params[:comment_id || :article_id]).exists?
+               voteable_id: params[:comment_id] || params[:article_id]).exists?
   end
 
   def set_voteable

@@ -1,19 +1,20 @@
 <% articles.each do |article| %>
   <div class="mb-4" id="accordion" role="tablist">
-    <div class="hek">
-<!--      <div class="d-table d-flex justify-content-center">-->
-<!--        <button type="button" class="btn btn-secondary shadow">▲</button>-->
-<!--      </div>-->
-<!--      <div class="d-table my-2 w-100 tif">-->
-<!--        <div class="tex">12764</div>-->
-<!--      </div>-->
-<!--      <div class="d-table d-flex justify-content-center">-->
-<!--        <button type="button" class="btn btn-secondary shadow">▼</button>-->
-<!--      </div>-->
-<!--      <div class="card mt-3 mx-4" data-toggle="collapse" href="#collapse<%#= "#{article.id}" %>" aria-expanded="true" aria-controls="collapse<%#= "#{article.id}" %>">-->
-<!--        <div class="px-3 font-weight-bold text-center">−</div>-->
-<!--      </div>-->
+
+    <div class="article-rating">
+      <% if current_user.nil? %>
+        <%= render 'votes/article_default_rate_selectors', article: article %>
+      <% elsif current_user.id == article.user.id %>
+        <%= render 'votes/no_selectors_rating_article' %>
+      <% elsif did_user_like_article?(article) %>
+        <%= render 'votes/article_like', article: article %>
+      <% elsif did_user_dislike_article?(article) %>
+        <%= render 'votes/article_dislike', article: article %>
+      <% else %>
+        <%= render 'votes/article_default_rate_selectors', article: article %>
+      <% end %>
     </div>
+
     <div class="d-flex flex-row">
       <div class="w-100">
         <div class="card shadow">

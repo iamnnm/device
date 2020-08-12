@@ -15,7 +15,6 @@ export default function createLikeAJAX() {
         });
 
         selector.addEventListener('ajax:error', (e) => {
-            const [data, status] = e.detail;
             addNotice('alert-massage-warning', correctFlushMessage(e.detail[0]));
         });
     });

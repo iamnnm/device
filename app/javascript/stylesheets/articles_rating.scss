@@ -1,0 +1,53 @@
+.article-rating {
+  position: relative;
+}
+
+.article-rating-wrapper {
+  position: absolute;
+  left: -100px;
+}
+
+.article-vote-up, .article-vote-down, .article-vote-result  {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.article-vote-up div, .article-vote-down div, .article-vote-result div {
+  width: 1px;
+  height: 1px;
+}
+
+.article-vote-up-selector input[type="submit"], .article-vote-down-selector input[type="submit"] {
+  border: none;
+  outline: none;
+  background-color: white;
+  font-size: 30px;
+}
+
+.article-vote-up-selector-default input, .article-vote-down-selector-default input {
+  border: none;
+  outline: none;
+  background-color: white;
+  font-size: 30px;
+}
+
+.article-vote-result {
+  font-size: 30px;
+}
+
+input[value="▲"]:hover {
+  text-shadow: 1px 1px 2px #2E2F30;
+}
+
+input[value="▲"]:active {
+  color: #28a745;
+}
+
+input[value="▼"]:hover {
+  text-shadow: 1px 1px 2px #2E2F30;
+}
+
+input[value="▼"]:active {
+  color: #B00100;
+}

@@ -1,8 +1,8 @@
 import addNotice from '../../../notices/add-notice';
 import correctFlushMessage from '../../../comments/correctFlushMessage';
 
-export default function flushForDislikeOnes() {
-    const selectors = document.querySelectorAll('.vote-down');
+export default function flushForArticleLikeOnes() {
+    const selectors = document.querySelectorAll('.article-vote-up-selector');
 
     selectors.forEach((selector) => {
         selector.addEventListener('ajax:error', (event) => {

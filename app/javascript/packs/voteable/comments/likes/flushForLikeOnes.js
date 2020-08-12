@@ -1,7 +1,7 @@
 import addNotice from '../../../notices/add-notice';
 import correctFlushMessage from '../../../comments/correctFlushMessage';
 
-export default function abc() {
+export default function flushForLikeOnes() {
     const selectors = document.querySelectorAll('.vote-up');
 
     selectors.forEach((selector) => {

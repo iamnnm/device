@@ -5,15 +5,15 @@
 
       <div class="rating">
         <% if current_user.nil? %>
-          <%= render 'votes/default_rate_selectors', comment: comment %>
+          <%= render 'votes/comment_default_rate_selectors', comment: comment %>
         <% elsif current_user.id == comment.user.id %>
           <%= '' %>
         <% elsif did_user_like?(comment) %>
-          <%= render 'votes/like', comment: comment %>
+          <%= render 'votes/comment_like', comment: comment %>
         <% elsif did_user_dislike?(comment) %>
-          <%= render 'votes/dislike', comment: comment %>
+          <%= render 'votes/comment_dislike', comment: comment %>
         <% else %>
-          <%= render 'votes/default_rate_selectors', comment: comment %>
+          <%= render 'votes/comment_default_rate_selectors', comment: comment %>
         <% end %>
       </div>
 

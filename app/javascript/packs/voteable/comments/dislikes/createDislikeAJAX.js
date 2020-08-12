@@ -15,7 +15,6 @@ export default function CreateDislikeAJAX() {
         });
 
         selector.addEventListener('ajax:error', (e) => {
-            console.log(e.detail[0]);
             addNotice('alert-massage-warning', correctFlushMessage(e.detail[0]));
         });
     });
